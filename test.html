@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Bootstrap Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .navbar {
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .hero-section {
+        padding-top: 100px;
+        padding-bottom: 50px;
+        background-color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      .card {
+        border: none;
+        border-radius: 12px;
+        transition: transform 0.2s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .contact-form {
+        max-width: 600px;
+        margin: auto;
+      }
+      /* Custom Teal Theme */
+      .btn-primary {
+        background-color: #20c997; /* A nice teal */
+        border-color: #20c997;
+        /* Removed padding and rounded-pill for a cleaner look */
+        padding: 8px 16px;
+        border-radius: 6px;
+      }
+      .btn-primary:hover {
+        background-color: #17a47e;
+        border-color: #17a47e;
+      }
+      /* Skills progress bar animation */
+      .progress-bar {
+        background-color: #20c997;
+        transition: width 1s ease-in-out; /* Smooth animation */
+        width: 0; /* Initial state for animation */
+      }
+      /* Project section background and card styles */
+      .projects-section {
+        position: relative;
+        background-color: #f8f9fa; /* Reverted to solid color */
+        overflow: hidden;
+      }
+      /* Removed the ::before pseudo-element for the background shapes */
+      .project-card {
+        position: relative;
+        z-index: 2;
+        border: none;
+        border-radius: 12px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .project-card:hover {
+        transform: translateY(-10px) rotateZ(1deg);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+      /* New styles for section animations */
+      .animated-section {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .skills-container,
+      .services-container {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .experience-container,
+      .achievements-container {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .animated-card,
+      .animated-testimonial-card {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .is-visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .card-is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body
+    data-bs-spy="scroll"
+    data-bs-target="#main-nav"
+    data-bs-smooth-scroll="true"
+    tabindex="0"
+  >
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="main-nav">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">My Portfolio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#achievements">Achievements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials">Testimonials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Home/Hero Section -->
+    <section id="home" class="hero-section text-center">
+      <div class="container">
+        <h1 class="display-3 fw-bold" id="job-title-typer"></h1>
+        <a
+          href="./assests/Abdelrhman magdy.pdf"
+          class="btn btn-primary btn-lg mt-4 rounded-pill"
+          download="./assests/Abdelrhman magdy.pdf"
+          >Download CV</a
+        >
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-5 text-center mb-4 mb-md-0">
+            <img
+              src="./assests/download.jpeg"
+              alt="[Profile Picture]"
+              class="img-fluid rounded-circle shadow-lg"
+            />
+          </div>
+          <div class="col-md-7">
+            <h2 class="display-5 fw-bold mb-3">About Me</h2>
+            <p class="lead">
+              Hello, my name is [Your Name]. I am a passionate and dedicated web
+              developer. I love creating beautiful, functional, and
+              user-friendly websites. I am currently studying Computer Science
+              and continuously learning new technologies to improve my skills. I
+              am always open to new opportunities and collaborations.
+            </p>
+            <p class="text-muted">
+              My journey into web development began when I was a student, and I
+              quickly fell in love with the process of bringing ideas to life on
+              the web. I focus on building responsive websites that provide a
+              seamless experience on all devices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5">Services Offered</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center services-container">
+              <h4 class="mb-3">Web Developer</h4>
+              <p class="text-muted">
+                I create visually appealing and user-friendly website layouts
+                that captivate your audience and reflect your brand identity.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card h-100 p-4 text-center services-container"
+              style="transition-delay: 0.2s"
+            >
+              <h4 class="mb-3">Front-End Development</h4>
+              <p class="text-muted">
+                I build responsive and interactive websites using modern
+                front-end technologies to ensure a seamless user experience.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card h-100 p-4 text-center services-container"
+              style="transition-delay: 0.4s"
+            >
+              <h4 class="mb-3">UI/UX Consulting</h4>
+              <p class="text-muted">
+                I help you optimize your website's user interface and experience
+                to improve engagement, conversions, and satisfaction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5">Skills & Experience</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="skills-container">
+              <h4 class="mb-3">Skills</h4>
+              <div class="mb-3">
+                <p class="mb-1">HTML</p>
+                <div class="progress rounded-pill" style="height: 25px">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    data-progress="95"
+                    aria-valuenow="95"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    95%
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <p class="mb-1">CSS</p>
+                <div class="progress rounded-pill" style="height: 25px">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    data-progress="85"
+                    aria-valuenow="85"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    85%
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <p class="mb-1">JavaScript</p>
+                <div class="progress rounded-pill" style="height: 25px">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    data-progress="70"
+                    aria-valuenow="70"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    70%
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <p class="mb-1">Bootstrap</p>
+                <div class="progress rounded-pill" style="height: 25px">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    data-progress="90"
+                    aria-valuenow="90"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    90%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="experience-container">
+              <h4 class="mb-3">Experience</h4>
+              <div class="card p-4 mb-3">
+                <h5>Web Development Trainee</h5>
+                <p class="text-muted mb-1">
+                  Company Name | [Start Date] - [End Date]
+                </p>
+                <p>
+                  Worked on various projects, collaborated with a team, and
+                  learned industry best practices for front-end development.
+                </p>
+              </div>
+              <div class="card p-4 mb-3">
+                <h5>Computer Science Student</h5>
+                <p class="text-muted mb-1">
+                  University Name | [Start Date] - Present
+                </p>
+                <p>
+                  Studying core concepts of computer science including data
+                  structures, algorithms, and software engineering.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5">Projects</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="project-card h-100 animated-card">
+              <img
+                src="https://placehold.co/600x400/E5E7EB/1F2937?text=Project+1"
+                class="card-img-top rounded-top"
+                alt="Project 1"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Project Title 1</h5>
+                <p class="card-text text-muted">
+                  A brief description of your project. This could be a website,
+                  an application, or a tool you built.
+                </p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="project-card h-100 animated-card"
+              style="transition-delay: 0.2s"
+            >
+              <img
+                src="https://placehold.co/600x400/E5E7EB/1F2937?text=Project+2"
+                class="card-img-top rounded-top"
+                alt="Project 2"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Project Title 2</h5>
+                <p class="card-text text-muted">
+                  A brief description of your project. This could be a website,
+                  an application, or a tool you built.
+                </p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="project-card h-100 animated-card"
+              style="transition-delay: 0.4s"
+            >
+              <img
+                src="https://placehold.co/600x400/E5E7EB/1F2937?text=Project+3"
+                class="card-img-top rounded-top"
+                alt="Project 3"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Project Title 3</h5>
+                <p class="card-text text-muted">
+                  A brief description of your project. This could be a website,
+                  an application, or a tool you built.
+                </p>
+                <a href="#" class="btn btn-primary">View Project</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section bg-light">
+      <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5">Achievements</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card p-4 h-100 achievements-container">
+              <h4 class="mb-2">Certification Name</h4>
+              <p class="text-muted">Issuing Organization | [Date]</p>
+              <p>
+                Description of the skills and knowledge gained from this
+                achievement or certification.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div
+              class="card p-4 h-100 achievements-container"
+              style="transition-delay: 0.2s"
+            >
+              <h4 class="mb-2">Award or Recognition</h4>
+              <p class="text-muted">Awarding Body | [Date]</p>
+              <p>
+                Details about the award and what it was for, highlighting your
+                contribution and success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+      <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5">Testimonials</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-4">
+            <div class="card p-4 h-100 animated-testimonial-card">
+              <p class="fst-italic text-muted">
+                "Abdelrhman is an incredibly talented and dedicated developer.
+                He was a great asset to our team and consistently delivered
+                high-quality work."
+              </p>
+              <p class="fw-bold mt-3">- Client Name, Company</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card p-4 h-100 animated-testimonial-card"
+              style="transition-delay: 0.2s"
+            >
+              <p class="fst-italic text-muted">
+                "His expertise in front-end development is unmatched. The
+                website he built for us exceeded all our expectations."
+              </p>
+              <p class="fw-bold mt-3">- Colleague Name, Position</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="card p-4 h-100 animated-testimonial-card"
+              style="transition-delay: 0.4s"
+            >
+              <p class="fst-italic text-muted">
+                "Working with Abdelrhman was a pleasure. He is creative,
+                professional, and a great communicator."
+              </p>
+              <p class="fw-bold mt-3">- Manager Name, Company</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5">Thank You!</h2>
+        <h4 class="text-center text-muted mb-4">Let's Work Together</h4>
+        <div class="contact-form p-4 bg-white rounded-3 shadow-lg">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="name@example.com"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                class="form-control"
+                id="message"
+                rows="4"
+                placeholder="Your message"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+      <div class="container">
+        <p class="mb-0">
+          &copy; <span id="current-year"></span> Abdelrhman. All Rights
+          Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Existing code for current year
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        // IntersectionObserver for skill bars
+        const progressBars = document.querySelectorAll(".progress-bar");
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.5, // Trigger when 50% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const bar = entry.target;
+              const progress = bar.getAttribute("data-progress");
+              bar.style.width = progress + "%";
+              observer.unobserve(bar); // Stop observing after animation
+            }
+          });
+        }, observerOptions);
+
+        progressBars.forEach((bar) => {
+          observer.observe(bar);
+        });
+
+        // Text typing effect for job title
+        const typingElement = document.getElementById("job-title-typer");
+        const jobs = ["Web Designer", "UI/UX Designer", "Product Designer"];
+        const staticText = "Hi, I am Abdelrhman. a ";
+        let jobIndex = 0;
+        let charIndex = 0;
+        const typingSpeed = 100; // milliseconds per character
+        const deletingSpeed = 50; // milliseconds per character
+        const pauseTime = 1500; // pause before deleting
+
+        function type() {
+          if (charIndex < jobs[jobIndex].length) {
+            typingElement.textContent =
+              staticText + jobs[jobIndex].substring(0, charIndex + 1);
+            charIndex++;
+            setTimeout(type, typingSpeed);
+          } else {
+            setTimeout(erase, pauseTime);
+          }
+        }
+
+        function erase() {
+          if (charIndex > 0) {
+            typingElement.textContent =
+              staticText + jobs[jobIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, deletingSpeed);
+          } else {
+            jobIndex = (jobIndex + 1) % jobs.length;
+            charIndex = 0;
+            setTimeout(type, 500); // Wait before typing the next word
+          }
+        }
+
+        typingElement.textContent = staticText;
+        type();
+
+        // Intersection Observers for section animations
+        const skillsContainer = document.querySelector(".skills-container");
+        const experienceContainer = document.querySelector(
+          ".experience-container"
+        );
+        const projectCards = document.querySelectorAll(".animated-card");
+        const servicesContainer = document.querySelectorAll(
+          ".services-container"
+        );
+        const achievementsContainer = document.querySelectorAll(
+          ".achievements-container"
+        );
+        const testimonialCards = document.querySelectorAll(
+          ".animated-testimonial-card"
+        );
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              skillsContainer.classList.add("is-visible");
+            }
+          });
+        });
+
+        const experienceObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              experienceContainer.classList.add("is-visible");
+            }
+          });
+        });
+
+        const projectsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("card-is-visible");
+              projectsObserver.unobserve(entry.target); // Stop observing after animation
+            }
+          });
+        });
+
+        const servicesObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        });
+
+        const achievementsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        });
+
+        const testimonialsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("card-is-visible");
+              testimonialsObserver.unobserve(entry.target);
+            }
+          });
+        });
+
+        // Start observing the elements
+        skillsObserver.observe(skillsContainer);
+        experienceObserver.observe(experienceContainer);
+        projectCards.forEach((card) => projectsObserver.observe(card));
+        servicesContainer.forEach((container) =>
+          servicesObserver.observe(container)
+        );
+        achievementsContainer.forEach((container) =>
+          achievementsObserver.observe(container)
+        );
+        testimonialCards.forEach((card) => testimonialsObserver.observe(card));
+      });
+    </script>
+  </body>
+</html>
